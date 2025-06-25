@@ -53,16 +53,9 @@
         }
 
         .logo {
-            width: 40px;
             height: 40px;
-            background: var(--magnus-coral);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
+            max-width: 200px;
+            object-fit: contain;
         }
 
         .site-title {
@@ -335,7 +328,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <div class="logo">M</div>
+            <img src="../magnus-logo.webp" alt="Magnus Consulting" class="logo">
             <a href="/" class="site-title">AI Prompting Mastery</a>
         </div>
     </header>
@@ -481,7 +474,7 @@ RESPONSE: 800-word case study with:
                     <h4 class="prompt-title">🎯 TRY THIS: RFP Response Workflow</h4>
                     
                     <div class="prompt-section">
-                        <div class="prompt-label">Step 1 - Requirements Analysis:</div>
+                        <div class="prompt-label">Complete Multi-Step Workflow:</div>
                         <div class="prompt-code-container">
                             <button class="copy-button" onclick="copyPrompt(this)">
                                 <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -490,56 +483,33 @@ RESPONSE: 800-word case study with:
                                 </svg>
                                 Copy
                             </button>
-                            <div class="prompt-code">Analyze this RFP from [CLIENT NAME] and extract:
+                            <div class="prompt-code">You are a Sopra Steria senior consultant developing a comprehensive RFP response strategy. Work through this systematic approach:
+
+STEP 1 - Requirements Analysis:
+Analyze this RFP from [CLIENT NAME] and extract:
 - Key requirements and evaluation criteria
 - Unstated client concerns and priorities
 - Competitive landscape implications
 - Risk factors and mitigation needs
 - Success metrics and expectations
 
-Provide structured analysis for proposal team review.</div>
-                        </div>
-                    </div>
-
-                    <div class="prompt-section">
-                        <div class="prompt-label">Step 2 - Solution Design:</div>
-                        <div class="prompt-code-container">
-                            <button class="copy-button" onclick="copyPrompt(this)">
-                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
-                                </svg>
-                                Copy
-                            </button>
-                            <div class="prompt-code">Based on the requirements analysis, design our solution approach:
+STEP 2 - Solution Design:
+Based on the requirements analysis, design our solution approach:
 - Technical architecture and methodology
 - Implementation timeline and milestones
 - Team structure and resource allocation
 - Risk management and quality assurance
 - Competitive differentiation points
 
-Create detailed solution framework for proposal development.</div>
-                        </div>
-                    </div>
-
-                    <div class="prompt-section">
-                        <div class="prompt-label">Step 3 - Content Generation:</div>
-                        <div class="prompt-code-container">
-                            <button class="copy-button" onclick="copyPrompt(this)">
-                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
-                                </svg>
-                                Copy
-                            </button>
-                            <div class="prompt-code">Generate the [SPECIFIC SECTION] of our proposal using:
+STEP 3 - Content Generation:
+Generate the [SPECIFIC SECTION] of our proposal using:
 - Requirements analysis from Step 1
 - Solution framework from Step 2
 - Sopra Steria templates and standards
 - Client-specific customization needs
 - Competitive positioning requirements
 
-Ensure alignment with overall proposal strategy.</div>
+Provide structured analysis for proposal team review, detailed solution framework for proposal development, and ensure alignment with overall proposal strategy.</div>
                         </div>
                     </div>
                 </div>
