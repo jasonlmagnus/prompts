@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Foundation Principles - AI Prompting Mastery</title>
+    <style>
+        :root {
+            --magnus-coral: #FF6B4A;
+            --magnus-coral-hover: #E55A3A;
+            --magnus-coral-light: #FF8B6B;
+            --magnus-coral-pale: #FFF4F1;
+            --magnus-navy: #2C3E50;
+            --magnus-charcoal: #1A1A1A;
+            --magnus-white: #FFFFFF;
+            --magnus-light-gray: #F5F5F5;
+            --magnus-medium-gray: #7F8C8D;
+            --magnus-border-gray: #E8E8E8;
+            --magnus-success: #27AE60;
+            --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "Fira Code", "Monaco", "Consolas", monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--magnus-charcoal);
+            background: var(--magnus-light-gray);
+        }
+
+        .header {
+            background: var(--magnus-white);
+            border-bottom: 1px solid var(--magnus-border-gray);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: var(--magnus-coral);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+            text-decoration: none;
+        }
+
+        .breadcrumbs {
+            background: var(--magnus-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--magnus-border-gray);
+        }
+
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb-nav {
+            font-size: 0.875rem;
+            color: var(--magnus-medium-gray);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--magnus-coral);
+            text-decoration: none;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: var(--magnus-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .toc-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--magnus-medium-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: var(--magnus-coral-pale);
+            color: var(--magnus-coral);
+        }
+
+        .content-area {
+            background: var(--magnus-white);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .module-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--magnus-border-gray);
+        }
+
+        .module-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--magnus-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .level-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--magnus-success);
+            color: white;
+        }
+
+        .meta-item {
+            font-size: 0.875rem;
+            color: var(--magnus-medium-gray);
+        }
+
+        .module-description {
+            font-size: 1.125rem;
+            color: var(--magnus-medium-gray);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .prompt-example {
+            background: var(--magnus-coral-pale);
+            border-left: 4px solid var(--magnus-coral);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .prompt-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+            margin-bottom: 1rem;
+        }
+
+        .prompt-section {
+            margin-bottom: 1rem;
+        }
+
+        .prompt-label {
+            font-weight: 600;
+            color: var(--magnus-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-code {
+            background: var(--magnus-white);
+            border: 1px solid var(--magnus-coral-light);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .prompt-code-container {
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: -0.5rem;
+            right: 0;
+            background: var(--magnus-coral);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.2s ease;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .copy-button:hover {
+            background: var(--magnus-coral-hover);
+            opacity: 1;
+        }
+
+        .copy-button.copied {
+            background: var(--magnus-success);
+        }
+
+        .copy-icon {
+            width: 12px;
+            height: 12px;
+        }
+
+        .navigation {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--magnus-border-gray);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--magnus-coral);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-button:hover {
+            background: var(--magnus-coral-hover);
+        }
+
+        .nav-button.secondary {
+            background: transparent;
+            color: var(--magnus-coral);
+            border: 2px solid var(--magnus-coral);
+        }
+
+        .nav-button.secondary:hover {
+            background: var(--magnus-coral);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .module-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">M</div>
+            <a href="../index.html" class="site-title">AI Prompting Mastery</a>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="breadcrumb-content">
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a> > <a href="../index.html#modules">Beginner</a> > Module 1
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <aside class="sidebar">
+            <h3 class="toc-title">Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#core-principles">Core Prompting Principles</a></li>
+                <li><a href="#clear-framework">CLEAR Framework</a></li>
+                <li><a href="#role-based">Role-based Prompting</a></li>
+            </ul>
+        </aside>
+
+        <main class="content-area">
+            <header class="module-header">
+                <h1 class="module-title">Foundation Principles and Frameworks</h1>
+                <div class="module-meta">
+                    <span class="level-badge">Beginner</span>
+                    <span class="meta-item">⏱️ 45 minutes</span>
+                    <span class="meta-item">📚 3 sections</span>
+                    <span class="meta-item">🎯 3 prompts</span>
+                </div>
+                <p class="module-description">
+                    Core prompting principles that transform results. Master the fundamental techniques that turn vague AI interactions into powerful business tools.
+                </p>
+            </header>
+
+            <section id="core-principles" class="section">
+                <h2 class="section-title">Core Prompting Principles That Transform Results</h2>
+                
+                <div class="section-content">
+                    <p><strong>Specificity drives quality.</strong> The fundamental rule across all major AI companies is precision: vague requests yield vague results, while detailed instructions produce targeted, useful outputs. Anthropic's "Golden Rule" states: "Think of Claude as a brilliant but very new employee who needs explicit instructions." This principle applies universally—whether using ChatGPT, Claude, or any AI model.</p>
+
+                    <p><strong>Context enables intelligence.</strong> AI models perform dramatically better when provided with relevant background information, target audience details, and situational context. OpenAI's official guidelines emphasize that models like GPT-4 are "highly steerable and responsive to well-specified prompts" but require sufficient context to understand your specific needs.</p>
+
+                    <p><strong>Examples accelerate accuracy.</strong> Few-shot prompting—providing 2-5 examples of desired outputs—consistently improves results by 75-85% according to comparative studies. This technique works by showing the AI exactly what success looks like rather than trying to describe it.</p>
+                </div>
+
+                <div class="prompt-example">
+                    <h4 class="prompt-title">🎯 TRY THIS: Transform Your Basic Prompts</h4>
+                    
+                    <div class="prompt-section">
+                        <div class="prompt-label">Bad Prompt:</div>
+                        <div class="prompt-code-container">
+                            <button class="copy-button" onclick="copyPrompt(this)">
+                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <div class="prompt-code">"Write a blog post about AI in business"</div>
+                        </div>
+                    </div>
+
+                    <div class="prompt-section">
+                        <div class="prompt-label">Good Prompt:</div>
+                        <div class="prompt-code-container">
+                            <button class="copy-button" onclick="copyPrompt(this)">
+                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <div class="prompt-code">You are a senior technology consultant at Sopra Steria, writing for C-suite executives at mid-size European companies. Create a 1,200-word blog post titled "AI Transformation Without Compromise: A European Approach to Digital Sovereignty."
+
+Context: Our BENELUX clients are interested in AI adoption but concerned about data sovereignty and regulatory compliance. Address GDPR, AI Act implications, and competitive advantages of European AI solutions.
+
+Structure:
+- Executive summary (150 words)
+- Current AI landscape challenges (300 words)
+- Sopra Steria's proven methodology (400 words)
+- 3 client success stories (200 words each)
+- Implementation roadmap (150 words)
+
+Tone: Authoritative but approachable, emphasizing trust and expertise
+Include: Statistics, specific regulatory references, clear next steps</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clear-framework" class="section">
+                <h2 class="section-title">The CLEAR Framework for Systematic Improvement</h2>
+                
+                <div class="section-content">
+                    <p>Every effective prompt should be <strong>Concise</strong> (focused on essentials), <strong>Logical</strong> (structured sequence), <strong>Explicit</strong> (specific instructions), <strong>Adaptive</strong> (ready for refinement), and <strong>Reflective</strong> (continuously improved). This methodology, developed for academic and business applications, provides a systematic approach to evaluate and enhance prompt quality.</p>
+
+                    <p>Implementation starts immediately. Begin each prompt with context, define the specific task, specify output format, add relevant constraints, and include examples when helpful. This five-step structure forms the foundation for all advanced techniques.</p>
+                </div>
+
+                <div class="prompt-example">
+                    <h4 class="prompt-title">🎯 TRY THIS: CLEAR Framework in Action</h4>
+                    
+                    <div class="prompt-section">
+                        <div class="prompt-code-container">
+                            <button class="copy-button" onclick="copyPrompt(this)">
+                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <div class="prompt-code">CONTEXT: Sopra Steria is responding to an RFP for digital transformation services from a Belgian insurance company (500 employees) looking to modernize their claims processing system.
+
+LOGICAL SEQUENCE:
+1. Executive Summary highlighting our BENELUX expertise
+2. Technical approach emphasizing GDPR compliance
+3. Implementation timeline with risk mitigation
+4. Team credentials and local presence
+5. Investment and ROI projections
+
+EXPLICIT REQUIREMENTS:
+- 15-page proposal maximum
+- Address their specific pain points: manual processes, regulatory pressure, customer satisfaction
+- Highlight our digital transformation advantages
+- Include minimum 3 BENELUX insurance client references
+
+ADAPTIVE ELEMENTS:
+- Modular sections for different stakeholder audiences
+- Appendices for technical deep-dives
+- Executive presentation summary
+
+REFLECTIVE IMPROVEMENT:
+- Version control for iterative refinement
+- Feedback incorporation mechanism
+- Success metric definitions</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="role-based" class="section">
+                <h2 class="section-title">Role-based Prompting for Expertise Simulation</h2>
+                
+                <div class="section-content">
+                    <p>Assigning specific professional roles to AI dramatically improves contextually appropriate responses. Instead of generic outputs, role-based prompting generates responses that match professional standards, industry knowledge, and communication styles.</p>
+
+                    <p>Effective role assignment follows this pattern: "You are a [specific role] with expertise in [domain]. [Task description]. Respond in the manner of [professional context]."</p>
+                </div>
+
+                <div class="prompt-example">
+                    <h4 class="prompt-title">🎯 TRY THIS: Sopra Steria Expert Roles</h4>
+                    
+                    <div class="prompt-section">
+                        <div class="prompt-label">For Client Communications:</div>
+                        <div class="prompt-code-container">
+                            <button class="copy-button" onclick="copyPrompt(this)">
+                                <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <div class="prompt-code">You are a Sopra Steria Principal Consultant with 15 years of experience in BENELUX financial services digital transformation. You're preparing for a C-level stakeholder meeting at a major Belgian bank.
+
+Create talking points for discussing their core banking modernization project, emphasizing:
+- Regulatory compliance (Basel III, PSD2, GDPR)
+- Risk mitigation during transformation
+- ROI timeline and business case justification
+- Our unique position as their trusted European partner
+
+Tone: Confident but collaborative, demonstrating deep sector knowledge
+Format: Executive briefing with supporting data points</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <nav class="navigation">
+                <a href="../index.html" class="nav-button secondary">← Back to Overview</a>
+                <a href="module-2.html" class="nav-button">Next: Advanced Techniques →</a>
+            </nav>
+        </main>
+    </div>
+
+    <script>
+        function copyPrompt(button) {
+            // Get the text content of the prompt code block (sibling element)
+            const container = button.parentElement;
+            const codeBlock = container.querySelector('.prompt-code');
+            const textToCopy = codeBlock.textContent.trim();
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                // Update button to show success
+                const originalContent = button.innerHTML;
+                button.innerHTML = `
+                    <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Copied!
+                `;
+                button.classList.add('copied');
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    button.innerHTML = originalContent;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy text: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Show success message
+                button.textContent = 'Copied!';
+                setTimeout(function() {
+                    button.innerHTML = originalContent;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompting Mastery - Sopra Steria</title>
+    <style>
+        :root {
+            --magnus-coral: #FF6B4A;
+            --magnus-coral-hover: #E55A3A;
+            --magnus-coral-light: #FF8B6B;
+            --magnus-coral-pale: #FFF4F1;
+            --magnus-navy: #2C3E50;
+            --magnus-charcoal: #1A1A1A;
+            --magnus-white: #FFFFFF;
+            --magnus-light-gray: #F5F5F5;
+            --magnus-medium-gray: #7F8C8D;
+            --magnus-border-gray: #E8E8E8;
+            --magnus-success: #27AE60;
+            --magnus-warning: #F39C12;
+            --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--magnus-charcoal);
+        }
+
+        .header {
+            background: var(--magnus-white);
+            border-bottom: 1px solid var(--magnus-border-gray);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: var(--magnus-coral);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--magnus-coral) 0%, var(--magnus-coral-light) 100%);
+            color: var(--magnus-white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--magnus-white);
+            color: var(--magnus-coral);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .modules-section {
+            padding: 4rem 0;
+            background: var(--magnus-light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--magnus-navy);
+            margin-bottom: 3rem;
+        }
+
+        .level-section {
+            margin-bottom: 3rem;
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .level-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--magnus-charcoal);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: var(--magnus-white);
+            border: 1px solid var(--magnus-border-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-card.beginner {
+            border-left: 4px solid var(--magnus-success);
+        }
+
+        .module-card.intermediate {
+            border-left: 4px solid var(--magnus-warning);
+        }
+
+        .module-card.advanced {
+            border-left: 4px solid var(--magnus-coral);
+        }
+
+        .module-number {
+            position: absolute;
+            top: -10px;
+            right: 1rem;
+            background: var(--magnus-coral);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .module-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--magnus-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-description {
+            color: var(--magnus-medium-gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .module-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: var(--magnus-medium-gray);
+        }
+
+        .module-link {
+            color: var(--magnus-coral);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .level-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .level-badge.beginner {
+            background: var(--magnus-success);
+            color: white;
+        }
+
+        .level-badge.intermediate {
+            background: var(--magnus-warning);
+            color: white;
+        }
+
+        .level-badge.advanced {
+            background: var(--magnus-coral);
+            color: white;
+        }
+
+        .footer {
+            background: var(--magnus-navy);
+            color: var(--magnus-white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 2rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">M</div>
+            <div class="site-title">AI Prompting Mastery</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI Prompting Mastery</h1>
+            <p class="hero-tagline">When Priorities Shift, Momentum Matters</p>
+            <p class="hero-description">
+                Transform your business with advanced AI prompting techniques. 
+                Master the frameworks and strategies that turn ChatGPT into a powerful business tool.
+            </p>
+            <a href="#modules" class="btn-primary">Start Learning</a>
+        </div>
+    </section>
+
+    <section id="modules" class="modules-section">
+        <div class="container">
+            <h2 class="section-title">Learning Modules</h2>
+
+            <div class="level-section">
+                <div class="level-header">
+                    <span class="level-badge beginner">Beginner</span>
+                    <h3 class="level-title">Foundation & Core Techniques</h3>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card beginner">
+                        <div class="module-number">01</div>
+                        <h4 class="module-title">Foundation Principles and Frameworks</h4>
+                        <p class="module-description">
+                            Core prompting principles that transform results. Learn the CLEAR framework and role-based prompting techniques.
+                        </p>
+                        <div class="module-meta">
+                            <span>⏱️ 45 minutes</span>
+                            <span>📚 5 sections</span>
+                            <span>🎯 3 prompts</span>
+                        </div>
+                        <a href="modules/module-1.html" class="module-link">Start Module →</a>
+                    </div>
+                    
+                    <div class="module-card beginner">
+                        <div class="module-number">02</div>
+                        <h4 class="module-title">Advanced Techniques and Business Applications</h4>
+                        <p class="module-description">
+                            Chain-of-thought prompting, template-based approaches, and multi-step workflows.
+                        </p>
+                        <div class="module-meta">
+                            <span>⏱️ 60 minutes</span>
+                            <span>📚 4 sections</span>
+                            <span>🎯 4 prompts</span>
+                        </div>
+                        <a href="modules/module-2.html" class="module-link">Start Module →</a>
+                    </div>
+                    
+                    <div class="module-card beginner">
+                        <div class="module-number">03</div>
+                        <h4 class="module-title">Content Creation Mastery</h4>
+                        <p class="module-description">
+                            Strategic content development, email marketing optimization, and social media content.
+                        </p>
+                        <div class="module-meta">
+                            <span>⏱️ 50 minutes</span>
+                            <span>📚 3 sections</span>
+                            <span>🎯 3 prompts</span>
+                        </div>
+                        <a href="modules/module-3.html" class="module-link">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="level-section">
+                <div class="level-header">
+                    <span class="level-badge intermediate">Intermediate</span>
+                    <h3 class="level-title">Business Applications & Automation</h3>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card intermediate">
+                        <div class="module-number">04</div>
+                        <h4 class="module-title">Research and Analysis Excellence</h4>
+                        <p class="module-description">Data analysis, competitive intelligence, and executive communication strategies.</p>
+                        <div class="module-meta">
+                            <span>⏱️ 55 minutes</span>
+                            <span>📚 4 sections</span>
+                            <span>🎯 5 prompts</span>
+                        </div>
+                        <a href="modules/module-4.html" class="module-link">Start Module →</a>
+                    </div>
+                    
+                    <div class="module-card intermediate">
+                        <div class="module-number">05</div>
+                        <h4 class="module-title">Business Automation and Workflow Integration</h4>
+                        <p class="module-description">Process automation design and workflow optimization.</p>
+                        <div class="module-meta">
+                            <span>⏱️ 65 minutes</span>
+                            <span>📚 3 sections</span>
+                            <span>🎯 4 prompts</span>
+                        </div>
+                        <a href="modules/module-5.html" class="module-link">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="level-section">
+                <div class="level-header">
+                    <span class="level-badge advanced">Advanced</span>
+                    <h3 class="level-title">Strategic Applications & Future Skills</h3>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card advanced">
+                        <div class="module-number">08</div>
+                        <h4 class="module-title">Advanced Applications and Future-Ready Skills</h4>
+                        <p class="module-description">Integration with strategic initiatives and advanced workflow orchestration.</p>
+                        <div class="module-meta">
+                            <span>⏱️ 60 minutes</span>
+                            <span>📚 3 sections</span>
+                            <span>�� 4 prompts</span>
+                        </div>
+                        <a href="#" class="module-link">Start Module →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Magnus Consulting. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

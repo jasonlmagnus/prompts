@@ -1,0 +1,275 @@
+/* Magnus Consulting Brand Colors - Extracted from Official Screenshot */
+
+:root {
+  /* Primary Brand Colors */
+  --magnus-coral: #FF6B4A;           /* Main coral/orange from tagline and CTA sections */
+  --magnus-coral-hover: #E55A3A;     /* Darker shade for hover states */
+  --magnus-coral-light: #FF8B6B;     /* Lighter shade for backgrounds */
+  --magnus-coral-pale: #FFF4F1;      /* Very light tint for subtle backgrounds */
+  
+  /* Secondary Colors */
+  --magnus-navy: #2C3E50;            /* Dark navy from main headings */
+  --magnus-navy-light: #34495E;      /* Slightly lighter navy */
+  --magnus-charcoal: #1A1A1A;        /* Deep charcoal for text */
+  
+  /* Neutral Colors */
+  --magnus-white: #FFFFFF;           /* Pure white backgrounds */
+  --magnus-off-white: #FAFAFA;       /* Subtle off-white */
+  --magnus-light-gray: #F5F5F5;      /* Light gray for sections */
+  --magnus-medium-gray: #7F8C8D;     /* Medium gray for secondary text */
+  --magnus-border-gray: #E8E8E8;     /* Light borders */
+  
+  /* Accent Colors */
+  --magnus-orange-accent: #FF8C42;   /* Orange accent from awards box */
+  --magnus-success: #27AE60;         /* Success/positive actions */
+  --magnus-warning: #F39C12;         /* Warning states */
+  --magnus-error: #E74C3C;           /* Error states */
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* Component Color Classes */
+.bg-magnus-coral { background-color: var(--magnus-coral); }
+.bg-magnus-coral-light { background-color: var(--magnus-coral-light); }
+.bg-magnus-coral-pale { background-color: var(--magnus-coral-pale); }
+.bg-magnus-navy { background-color: var(--magnus-navy); }
+.bg-magnus-white { background-color: var(--magnus-white); }
+.bg-magnus-off-white { background-color: var(--magnus-off-white); }
+.bg-magnus-light-gray { background-color: var(--magnus-light-gray); }
+
+.text-magnus-coral { color: var(--magnus-coral); }
+.text-magnus-navy { color: var(--magnus-navy); }
+.text-magnus-charcoal { color: var(--magnus-charcoal); }
+.text-magnus-medium-gray { color: var(--magnus-medium-gray); }
+.text-magnus-white { color: var(--magnus-white); }
+
+.border-magnus-coral { border-color: var(--magnus-coral); }
+.border-magnus-gray { border-color: var(--magnus-border-gray); }
+
+/* Button Styles */
+.btn-magnus-primary {
+  background-color: var(--magnus-coral);
+  color: var(--magnus-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-magnus-primary:hover {
+  background-color: var(--magnus-coral-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 74, 0.3);
+}
+
+.btn-magnus-secondary {
+  background-color: transparent;
+  color: var(--magnus-coral);
+  border: 2px solid var(--magnus-coral);
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-magnus-secondary:hover {
+  background-color: var(--magnus-coral);
+  color: var(--magnus-white);
+}
+
+.btn-magnus-ghost {
+  background-color: transparent;
+  color: var(--magnus-medium-gray);
+  border: none;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-magnus-ghost:hover {
+  color: var(--magnus-charcoal);
+  background-color: var(--magnus-light-gray);
+}
+
+/* Card Styles */
+.magnus-card {
+  background: var(--magnus-white);
+  border: 1px solid var(--magnus-border-gray);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.magnus-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.magnus-card-coral {
+  border-left: 4px solid var(--magnus-coral);
+}
+
+/* Prompt Box Styles */
+.magnus-prompt-box {
+  background: var(--magnus-coral-pale);
+  border: 1px solid var(--magnus-coral-light);
+  border-left: 4px solid var(--magnus-coral);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.magnus-prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  color: var(--magnus-charcoal);
+}
+
+/* Progress Bar */
+.magnus-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--magnus-border-gray);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.magnus-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--magnus-coral) 0%, var(--magnus-coral-light) 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Level Indicators */
+.level-beginner {
+  border-left-color: var(--magnus-success);
+  background-color: rgba(39, 174, 96, 0.1);
+}
+
+.level-intermediate {
+  border-left-color: var(--magnus-warning);
+  background-color: rgba(243, 156, 18, 0.1);
+}
+
+.level-advanced {
+  border-left-color: var(--magnus-coral);
+  background-color: var(--magnus-coral-pale);
+}
+
+/* Input Styles */
+.magnus-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--magnus-border-gray);
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: var(--font-primary);
+  transition: all 0.2s ease;
+}
+
+.magnus-input:focus {
+  outline: none;
+  border-color: var(--magnus-coral);
+  box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.1);
+}
+
+/* Typography Styles */
+.magnus-heading-1 {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--magnus-navy);
+  line-height: 1.2;
+}
+
+.magnus-heading-2 {
+  font-family: var(--font-heading);
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--magnus-navy);
+  line-height: 1.3;
+}
+
+.magnus-heading-3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--magnus-charcoal);
+  line-height: 1.4;
+}
+
+.magnus-tagline {
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--magnus-coral);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.magnus-body {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--magnus-charcoal);
+  line-height: 1.6;
+}
+
+.magnus-body-secondary {
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  color: var(--magnus-medium-gray);
+  line-height: 1.5;
+}
+
+/* Utility Classes */
+.magnus-shadow-sm { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.magnus-shadow-md { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+.magnus-shadow-lg { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+
+.magnus-rounded { border-radius: 6px; }
+.magnus-rounded-lg { border-radius: 12px; }
+.magnus-rounded-xl { border-radius: 16px; }
+
+.magnus-transition { transition: all 0.2s ease; }
+.magnus-transition-slow { transition: all 0.3s ease; }
+
+/* Responsive Helpers */
+@media (max-width: 768px) {
+  .magnus-heading-1 { font-size: 1.875rem; }
+  .magnus-heading-2 { font-size: 1.5rem; }
+  .magnus-heading-3 { font-size: 1.25rem; }
+  
+  .magnus-card { padding: 16px; }
+  .magnus-prompt-box { padding: 16px; }
+}
+
+/* Dark Mode Support (Future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --magnus-white: #1A1A1A;
+    --magnus-off-white: #2C2C2C;
+    --magnus-light-gray: #3A3A3A;
+    --magnus-charcoal: #FFFFFF;
+    --magnus-medium-gray: #B0B0B0;
+    --magnus-border-gray: #404040;
+  }
+} 
