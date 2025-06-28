@@ -34,6 +34,89 @@
             background: var(--magnus-light-gray);
         }
 
+        /* Password Protection Overlay */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .password-overlay.hidden {
+            display: none;
+        }
+
+        .password-modal {
+            background: var(--magnus-white);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .password-modal h2 {
+            color: var(--magnus-navy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .password-modal p {
+            color: var(--magnus-medium-gray);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--magnus-border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--magnus-coral);
+        }
+
+        .password-submit {
+            width: 100%;
+            background: var(--magnus-coral);
+            color: var(--magnus-white);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .password-submit:hover {
+            background: var(--magnus-coral-hover);
+        }
+
+        .password-error {
+            color: #e74c3c;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .password-error.hidden {
+            display: none;
+        }
+
         .header {
             background: var(--magnus-white);
             border-bottom: 1px solid var(--magnus-border-gray);
@@ -289,6 +372,19 @@
     </style>
 </head>
 <body>
+    <!-- Password Protection Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-modal">
+            <h2>🔒 Premium Content</h2>
+            <p>This intermediate module requires a password to access. Please enter the password provided by your instructor.</p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+            <button class="password-submit" id="passwordSubmit">Access Module</button>
+            <div class="password-error hidden" id="passwordError">
+                Incorrect password. Please try again.
+            </div>
+        </div>
+    </div>
+
     <header class="header">
         <div class="header-content">
             <img src="../magnus-logo.webp" alt="Magnus Consulting" class="logo">
@@ -552,5 +648,69 @@ OUTPUT: Speaker notes for each slide plus executive summary memo</div>
             </nav>
         </main>
     </div>
+
+    <script>
+        // Password protection functionality
+        const PASSWORD = 'magnus2025'; // Set your desired password here
+        const overlay = document.getElementById('passwordOverlay');
+        const input = document.getElementById('passwordInput');
+        const submitBtn = document.getElementById('passwordSubmit');
+        const errorMsg = document.getElementById('passwordError');
+
+        // Check if user has already entered correct password in this session
+        if (sessionStorage.getItem('module4Access') === 'granted') {
+            overlay.classList.add('hidden');
+        }
+
+        function checkPassword() {
+            const enteredPassword = input.value.trim();
+            
+            if (enteredPassword === PASSWORD) {
+                // Correct password
+                sessionStorage.setItem('module4Access', 'granted');
+                overlay.classList.add('hidden');
+                errorMsg.classList.add('hidden');
+            } else {
+                // Incorrect password
+                errorMsg.classList.remove('hidden');
+                input.value = '';
+                input.focus();
+                
+                // Add shake animation
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Event listeners
+        submitBtn.addEventListener('click', checkPassword);
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Focus on input when page loads
+        input.focus();
+
+        // Add shake animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 20%, 40%, 60%, 80% {
+                    transform: translateX(-5px);
+                }
+                10%, 30%, 50%, 70%, 90% {
+                    transform: translateX(5px);
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
